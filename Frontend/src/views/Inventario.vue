@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { EyeIcon, TrashIcon, ListBulletIcon, FolderPlusIcon, RectangleStackIcon, FolderOpenIcon } from '@heroicons/vue/24/solid';
 import { librosService } from '../services/librosService';
 import Sidebar from '../components/SideBar.vue';
@@ -35,7 +35,6 @@ const librosPerPage = 30;
 const totalLibros = ref(0);
 const cargando = ref(false);
 const libroSeleccionadoId = ref<number | null>(null);
-const refreshInterval = ref<ReturnType<typeof setInterval> | null>(null);
 
 const filtrosGuardados = localStorage.getItem('filtrosInventario');
 
@@ -194,12 +193,9 @@ const librosPorCategoria = computed(() => {
 
 onMounted(() => {
   cargarLibros();
-  refreshInterval.value = setInterval(cargarLibros, 5000);
+  
 });
 
-onUnmounted(() => {
-  if (refreshInterval.value) clearInterval(refreshInterval.value);
-});
 </script>
 
 <template>

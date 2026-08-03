@@ -7,6 +7,7 @@ import { AtSymbolIcon, FolderArrowDownIcon, UserCircleIcon,
         EyeIcon, EyeSlashIcon 
 } from '@heroicons/vue/24/solid';
 import router from '../router';
+import Swal from 'sweetalert2';
 
 const { usuarioGlobal, cargarUsuario, actualizarUsuario } = useUsuario();
 
@@ -149,6 +150,15 @@ const guardarPerfil = async () => {
     contraseñaActual.value = '';
     contraseñaNueva.value = '';
     contraseñaConfirmar.value = '';
+
+    Swal.fire({
+      icon: 'success',
+      title: 'Perfil actualizado',
+      text: 'Los cambios se han guardado correctamente.',
+      confirmButtonColor: '#344F37',
+    });
+
+
 
     setTimeout(() => {
       exito.value = false;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import Sidebar from '../components/SideBar.vue';
 import { EyeIcon, TrashIcon, IdentificationIcon, NewspaperIcon, CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/vue/24/solid';
 import RegistrarPrestamoModal from '../components/RegistrarPrestamoModal.vue';
@@ -51,7 +51,6 @@ const prestamosPerPage = 4;
 const mostrarModal = ref(false);
 const prestamos = ref<Prestamo[]>([]);
 const cargando = ref(false);
-const refreshInterval = ref<number | null>(null);
 
 const verDetalles = (id: number) => {
   prestamoSeleccionadoId.value = id;
@@ -191,14 +190,9 @@ const prestamoRegistrado = () => {
 
 onMounted(() => {
   cargarPrestamos(true); 
-  refreshInterval.value = setInterval(() => {
-    cargarPrestamos(false);
-  }, 5000);
+  
 });
 
-onUnmounted(() => {
-  if (refreshInterval.value) clearInterval(refreshInterval.value);
-});
 </script>
 
 <template>
