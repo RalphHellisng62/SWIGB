@@ -107,8 +107,10 @@ DATABASES = {
         'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT'),
         'OPTIONS': {
-            'sslmode': 'require',  # Requerir SSL para la conexión
-        },
+            'sslmode': 'require',
+            
+            # Requerir SSL para la conexión
+        } if os.getenv('DB_HOST') != 'localhost' else {},
     }
 }
 
