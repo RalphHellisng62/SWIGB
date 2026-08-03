@@ -77,7 +77,7 @@ const irAPrestamos = () => {
 const obtenerUrlFoto = (foto?: string) => {
   if (!foto) return '';
   if (foto.startsWith('http')) return foto;
-  return `http://localhost:8000${foto}`;
+  return `${import.meta.env.VITE_API_BASE_URL}${foto}`;
 };
 </script>
 

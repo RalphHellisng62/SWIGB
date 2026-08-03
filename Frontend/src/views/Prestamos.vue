@@ -29,7 +29,7 @@ const obtenerFotoPreview = (prestamo: Prestamo) => {
   if (prestamo.libro_foto.startsWith('http')) {
     return prestamo.libro_foto;
   }
-  return `http://localhost:8000${prestamo.libro_foto}`;
+  return `${import.meta.env.VITE_API_BASE_URL}${prestamo.libro_foto}`;
 };
 
 const estaVencido = (fechaDevolucion: string): boolean => {
