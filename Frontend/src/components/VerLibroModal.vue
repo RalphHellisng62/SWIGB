@@ -45,16 +45,17 @@ const estado = ref('enInventario');
 const fotoPreview = ref('');
 const fotoFile = ref<File | null>(null);
 
+
 const categorias = [
   '000-Generalidades',
   '300-Ciencias Sociales',
   '400-Lenguas',
   '500-Ciencias naturales y matemáticas',
-  '600-Tegnología (Ciencia aplicadas)',
+  '600-Tecnología (Ciencia aplicadas)',
   '700-Bellas artes',
-  '800-Literatura y retorica',
-  '900-Geográfia e Historia',
-  'Prestamo a domicilio',
+  '800-Literatura y retórica',
+  '900-Geografía e Historia',
+  'Préstamo a domicilio',
 ];
 
 onMounted(async () => {

@@ -12,7 +12,7 @@ export const librosService = {
  crearLibro(datos: any) {
   // Si ya es FormData, enviar directamente SIN modificar
   if (datos instanceof FormData) {
-    console.log('📤 Enviando FormData directamente');
+    console.log(' Enviando FormData directamente');
     
     // IMPORTANTE: No setear Content-Type, dejar que axios lo haga
     return api.post('/libros/', datos, {
@@ -24,7 +24,7 @@ export const librosService = {
   }
 
   // Si es un objeto JSON, crear FormData
-  console.log('📤 Creando FormData desde objeto');
+  console.log(' Enviando FormData desde objeto');
   const formData = new FormData();
 
   formData.append('titulo', datos.titulo);

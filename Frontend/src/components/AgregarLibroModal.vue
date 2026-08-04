@@ -109,10 +109,23 @@ const agregarLibro = async () => {
       emit('libro-agregado');
       cerrar();
     }, 1500);
-  } catch (err: any) {
-    console.error('Error al agregar libro:', err.response?.data);
-    error.value = err.response?.data?.detail || JSON.stringify(err.response?.data) || 'Error al agregar libro';
-  } finally {
+
+    } catch (err: any) {
+  console.error('Error al agregar libro:', err.response?.data);
+
+  const data = err.response?.data;
+
+  if (data?.detail) {
+    error.value = data.detail;
+  } else if (data?.nt) {
+    error.value = 'Ya fue registrado un libro con ese Número de Topografía (NT). El NT no puede repetirse.';
+  } else if (data && typeof data === 'object') {
+    const primerCampo = Object.keys(data)[0];
+    error.value = data[primerCampo][0];
+  } else {
+    error.value = 'Ocurrió un error al registrar el libro.';
+  }
+} finally {
     cargando.value = false;
   }
 };
